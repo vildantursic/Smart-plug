@@ -140,6 +140,7 @@
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config" />
     <None Include="Properties\PublishProfiles\smartplug.pubxml" />
+    <None Include="Scripts\plugs.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

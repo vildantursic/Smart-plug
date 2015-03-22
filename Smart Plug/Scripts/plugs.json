@@ -1,0 +1,53 @@
+﻿{
+    "plugs": [
+        {
+            "id": 1,
+            "name": "TV",
+            "state": "ok",
+            "uptime": "1:40",
+            "location": "livingroom"
+        },
+        {
+            "id": 2,
+            "name": "Laptop",
+            "state": "off",
+            "uptime": "1:22",
+            "location": "kitchen"
+        },
+        {
+            "id": 3,
+            "name": "kitchen one",
+            "state": "warning",
+            "uptime": "1:10",
+            "location": "kitchen"
+        },
+        {
+            "id": 4,
+            "name": "bedroom shell",
+            "state": "alert",
+            "uptime": "1:22",
+            "location": "bathroom"
+        },
+        {
+            "id": 5,
+            "name": "",
+            "state": "warning",
+            "uptime": "2:22",
+            "location": "livingroom"
+        },
+        {
+            "id": 6,
+            "name": "TV 2",
+            "state": "off",
+            "uptime": "1:22",
+            "location": "livingroom"
+        },
+        {
+            "id": 7,
+            "name": "",
+            "state": "alert",
+            "uptime": "1:22",
+            "location": "bedroom"
+        }
+    ]
+}

@@ -10,78 +10,79 @@ app.config(function($urlRouterProvider, $stateProvider) {
             controller: "homeCtrl"
         })
         .state("log", {
-            url: "/log",
+            url: "/log/:id",
             templateUrl: "Views/log.html",
             controller: "logCtrl"
         })
         .state("plot", {
-            url: "/plot",
+            url: "/plot/:id",
             templateUrl: "Views/plot.html",
             controller: "plotCtrl"
         });
 });
 
-app.controller("homeCtrl", function($scope) {
+app.controller("homeCtrl", function ($scope, $http) {
 
-    $scope.plugs = [
-        {
-            id: 1,
-            state: "ok",
-            uptime: "1:40",
-            location: "livingroom"
-        },
-        {
-            id: 2,
-            state: "off",
-            uptime: "1:22",
-            location: "kitchen"
-        },
-        {
-            id: 3,
-            state: "warning",
-            uptime: "1:10",
-            location: "kitchen"
-        },
-        {
-            id: 4,
-            state: "alert",
-            uptime: "1:22",
-            location: "bathroom"
-        },
-        {
-            id: 5,
-            state: "warning",
-            uptime: "2:22",
-            location: "livingroom"
-        },
-        {
-            id: 6,
-            state: "off",
-            uptime: "1:22",
-            location: "livingroom"
-        },
-        {
-            id: 7,
-            state: "alert",
-            uptime: "1:22",
-            location: "bedroom"
-        }
-    ];
+    $scope.data = {
+        plugs: [
+            {
+                name: "name",
+                type: "type",
+                state: "alert",
+                location: "kitchen"
+            }
+        ]
+    }
 
-    function showData(){
-        $("#more").on("click", function() {
-            $("#plug").style.height = "400px";
+    var plugRef = new Firebase('https://smartplug.firebaseio.com');
+
+    $scope.addPlug = function () {
+        $scope.data.plugs.push({
+
+            name: $scope.plug.name,
+            type: $scope.plug.type,
+            state: $scope.plug.state,
+            location: $scope.plug.location
         });
     }
 
-    $scope.plugFunc = function (){
+    $('#plugInput').on("click", function (e) {
+        var name = $scope.plug.name;
+        var type = $scope.plug.type;
+        var state = $scope.plug.state;
+        var location = $scope.plug.location;
 
+        plugRef.push({ name: name, type: type, state: state, location: location });
+
+        $('#name').val('');
+        $('#type').val('');
+        $('#state').val('');
+        $('#location').val('');
+    });
+
+    plugRef.on('child_added', function (snapshot) {
+        $scope.plugs = snapshot.val();
+    });
+
+    $scope.removePlug = function(index) {
+        $scope.data.plugs.splice(index, 1);
     }
 
 });
 
-app.controller("logCtrl", function() {
-    
+app.controller("logCtrl", function ($scope, $http, $stateParams) {
+    $scope.plug = $stateParams.id;
+
+    var req = {
+        method: 'GET',
+        url: '/Scripts/plugs.json'
+    }
+
+    $http.get(req).success(function (data) {
+        console.log(data);
+    }).error(function() {
+        console.log("404");
+    });
 });
 
 app.controller("plotCtrl", function ($scope) {

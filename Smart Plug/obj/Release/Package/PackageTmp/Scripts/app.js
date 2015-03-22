@@ -10,23 +10,80 @@ app.config(function($urlRouterProvider, $stateProvider) {
             controller: "homeCtrl"
         })
         .state("log", {
-            url: "/log",
+            url: "/log/:id",
             templateUrl: "Views/log.html",
             controller: "logCtrl"
         })
         .state("plot", {
-            url: "/plot",
+            url: "/plot/:id",
             templateUrl: "Views/plot.html",
             controller: "plotCtrl"
         });
 });
 
-app.controller("homeCtrl", function($scope) {
-    $scope.name = "Smart-plug";
+app.controller("homeCtrl", function ($scope, $http) {
+
+    $scope.data = {
+        plugs: [
+            {
+                name: "name",
+                type: "type",
+                state: "alert",
+                location: "kitchen"
+            }
+        ]
+    }
+
+    var plugRef = new Firebase('https://smartplug.firebaseio.com');
+
+    $scope.addPlug = function () {
+        $scope.data.plugs.push({
+
+            name: $scope.plug.name,
+            type: $scope.plug.type,
+            state: $scope.plug.state,
+            location: $scope.plug.location
+        });
+    }
+
+    $('#plugInput').on("click", function (e) {
+        var name = $scope.plug.name;
+        var type = $scope.plug.type;
+        var state = $scope.plug.state;
+        var location = $scope.plug.location;
+
+        plugRef.push({ name: name, type: type, state: state, location: location });
+
+        $('#name').val('');
+        $('#type').val('');
+        $('#state').val('');
+        $('#location').val('');
+    });
+
+    plugRef.on('child_added', function (snapshot) {
+        $scope.plugs = snapshot.val();
+        console.log($scope.plugs);
+    });
+
+    $scope.removePlug = function(index) {
+        $scope.data.plugs.splice(index, 1);
+    }
+
 });
 
-app.controller("logCtrl", function() {
+app.controller("logCtrl", function ($scope, $http, $stateParams) {
+    $scope.plug = $stateParams.id;
 
+    var req = {
+        method: 'GET',
+        url: '/Scripts/plugs.json'
+    }
+
+    $http.get(req).success(function (data) {
+        console.log(data);
+    }).error(function() {
+        console.log("404");
+    });
 });
 
 app.controller("plotCtrl", function ($scope) {
@@ -100,8 +157,10 @@ app.controller("plotCtrl", function ($scope) {
 
     chart.addTimeSeries(series, {
         lineWidth: 1.5,
-        strokeStyle: "#0060ff"
+        strokeStyle: "#0060ff",
+        fillStyle: "#000000"
     });
 
     chart.streamTo(canvas, 2000);
+
 });

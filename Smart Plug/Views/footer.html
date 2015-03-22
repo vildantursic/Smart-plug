@@ -1,7 +1,40 @@
 ﻿<footer>
     <div class="container">
-        <div class="cpy">
-            &copy; SMART PLUG - 2015    
+        <div class="chat-box">
+            <h3 class="chat-head">Support</h3>
+            <div class="chat-text">
+                <div id='messagesDiv'></div>
+            </div>
+            <div class="chat-input">
+                <input type='text' id='nameInput' placeholder='Name'>
+                <input type='text' id='messageInput' placeholder='Message'>
+            </div>
         </div>
+
+        <div class="cpy">
+            &copy; SMART PLUG - 2015
+        </div>
+
+        <script>
+            var myDataRef = new Firebase('https://amber-torch-5173.firebaseio.com');
+            $('#messageInput').keypress(function (e) {
+                if (e.keyCode == 13) {
+                    var name = $('#nameInput').val();
+                    var text = $('#messageInput').val();
+                    myDataRef.push({ name: name, text: text });
+                    $('#messageInput').val('');
+                }
+            });
+
+            myDataRef.on('child_added', function (snapshot) {
+                var message = snapshot.val();
+                displayChatMessage(message.name, message.text);
+            });
+
+            function displayChatMessage(name, text) {
+                $('<div/>').text(text).prepend($('<b>').text(name + ': ')).appendTo($('#messagesDiv'));
+                $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+            };
+        </script>
     </div>
 </footer>

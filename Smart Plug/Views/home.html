@@ -3,19 +3,19 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div ng-repeat="plug in plugs">
-                <div class="my-plug {{plug.state}}-plug">
+            <div ng-repeat="plugy in data.plugs">
+                <div class="my-plug {{plugy.state}}-plug">
                     <span><img src="../Images/socket.png" /></span>
-                    Plug {{plug.id}}
+                    Plug {{plugy.id}}
                     <div class="buttons">
                         <button class="circle-button more-button"><img src="../Images/more10.png"/></button>
-                        <button class="circle-button remove-button"><img src="../Images/delete8.png"/></button>
+                        <button class="circle-button remove-button" ng-click="removePlug($index)"><img src="../Images/delete8.png"/></button>
                         <button class="circle-button save-button"><img src="../Images/eco37.png"/></button>
                         <button class="circle-button off-button"><img src="../Images/power102.png"/></button>
                     </div>
                     <div class="data">
-                        <div>Uptime: {{plug.uptime}}</div>
-                        <div>Location: {{plug.location}}</div>
+                        <div>Uptime: {{plugy.type}}</div>
+                        <div>Location: {{plugy.location}}</div>
                     </div>
                 </div>
             </div>
@@ -26,16 +26,16 @@
             <h2>Add plug</h2>
         </div>
         <div class="col-lg-6">
-            <input placeholder="Name" ng-model="name"/>
-            <input placeholder="Location" ng-model="location"/>
+            <input id="name" type="text" placeholder="Name" ng-model="plug.name"/>
+            <input id="type" type="text" placeholder="Type" ng-model="plug.type"/>
         </div>
         <div class="col-lg-6">
-            <input placeholder="IP" ng-model="ip"/>
-            <input placeholder="Description" ng-model="desc"/>
+            <input id="state" type="text" placeholder="State" ng-model="plug.state"/>
+            <input id="location" type="text" placeholder="Location" ng-model="plug.location"/>
         </div>
         <div class="col-lg-12">
             <div class="col-lg-6">
-                <button class="circle-button add-button"><img src="../Images/plus79.png"/></button>
+                <button id="plugInput" ng-click="addPlug()" class="circle-button add-button"><img src="../Images/plus79.png"/></button>
                 <button class="circle-button remove-button"><img src="../Images/delete8.png"/></button>
             </div>
         </div>
