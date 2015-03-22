@@ -1,0 +1,28 @@
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\ApplicationInsights.config
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensions.Intercept_x86.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Smart Plug.dll.config
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Smart Plug.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Smart Plug.pdb
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensibility.Web.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Diagnostics.Tracing.EventSource.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Threading.Tasks.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Threading.Tasks.Extensions.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.xml
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.pdb
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.xml
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensibility.Web.pdb
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.ApplicationInsights.Extensibility.Web.xml
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Diagnostics.Tracing.EventSource.xml
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Threading.Tasks.xml
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Threading.Tasks.Extensions.xml
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\obj\Release\ApplicationInsights.config
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\obj\Release\Smart Plug.dll
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\obj\Release\Smart Plug.pdb
+c:\users\vildan\documents\visual studio 2013\Projects\Smart Plug\Smart Plug\obj\Release\Smart Plug.csprojResolveAssemblyReference.cache
