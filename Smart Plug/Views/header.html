@@ -1,42 +1,43 @@
-﻿<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="col-lg-6">
-                    <h1>Smart plug</h1>
-                </div>
-                <div class="col-lg-6">
-                    <div class="user">
-                        <button class="circle-button user-button"><img src="../Images/user168.png" /></button>
+﻿<div ng-controller="navCtrl">
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-6">
+                        <h1>Smart plug</h1>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="user">
+                            <button class="circle-button user-button"><img src="../Images/user168.png" /></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</header>
-<nav class="navigation">
-    <div class="row">
-        <div class="col-lg-4">
-            <button class="my-btn selected" ui-sref="home">HOME</button>
+    </header>
+    <nav class="navigation">
+        <div class="row">
+            <div class="col-lg-4">
+                <button class="my-btn" ui-sref="log"><span><img src="../Images/log1.png" />{{viewModel}}</span></button>
+            </div>
+            <div class="col-lg-4">
+                <button class="my-btn selected" ui-sref="home"><span><img src="../Images/home168.png" /></span></button>
+            </div>
+            <div class="col-lg-4">
+                <button class="my-btn" ui-sref="plot"><span><img src="../Images/line-chart1.png" />{{viewModel}}</span></button>
+            </div>
         </div>
-        <div class="col-lg-4">
-            <button class="my-btn" ui-sref="log">LOG</button>
-        </div>
-        <div class="col-lg-4">
-            <button class="my-btn" ui-sref="plot">PLOT</button>
-        </div>
-    </div>
+        <script>
+            //first you grab the click event for the button(s)
+            $("button").click(function () {
 
-    <script>
-        //first you grab the click event for the button(s)
-        $("button").click(function () {
+                //we remove all the borders from all the buttons
+                $("button").removeClass("selected");
 
-            //we remove all the borders from all the buttons
-            $("button").removeClass("selected");
+                //Now we add the border to the button that's been clicked
+                $(this).addClass("selected");
 
-            //Now we add the border to the button that's been clicked
-            $(this).addClass("selected");
-
-        });
-    </script>
-</nav>
+            });
+        </script>
+    </nav>
+</div>

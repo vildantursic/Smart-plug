@@ -1,22 +1,60 @@
 ﻿<div class="row">
     <h1>HOME</h1>
-
+    <pre>{{on_off}}</pre>
     <div class="row">
-        <div class="col-lg-12">
-            <div ng-repeat="plugy in data.plugs">
-                <div class="my-plug {{plugy.state}}-plug">
-                    <span><img src="../Images/socket.png" /></span>
-                    Plug {{plugy.id}}
+        <div ng-repeat="plugy in data.plugs">
+            <div class="my-plug {{plugy.state}}-plug">
+                <span><img src="../Images/socket.png" /> Plug {{plugy.name}}</span>
+                <div class="plug-main">
                     <div class="buttons">
-                        <button class="circle-button more-button"><img src="../Images/more10.png"/></button>
-                        <button class="circle-button remove-button" ng-click="removePlug($index)"><img src="../Images/delete8.png"/></button>
-                        <button class="circle-button save-button"><img src="../Images/eco37.png"/></button>
-                        <button class="circle-button off-button"><img src="../Images/power102.png"/></button>
+                        <button type="button" class="circle-button more-button"><img src="../Images/more10.png" /></button>
+                        <button type="button" class="circle-button remove-button" ng-click="removePlug($index)"><img src="../Images/delete8.png" /></button>
+                        <button type="button" class="circle-button save-button"><img src="../Images/eco37.png" /></button>
+                        <button type="button" class="circle-button off-button"><img src="../Images/power102.png" /></button>
                     </div>
                     <div class="data">
-                        <div>Uptime: {{plugy.type}}</div>
-                        <div>Location: {{plugy.location}}</div>
+                        <div>
+                            <b>Uptime:</b> {{plugy.ip}}
+                        </div>
+                        <div>
+                            <b>Location:</b> {{plugy.location}}
+                        </div>
                     </div>
+                </div>
+                <div class="plug-other">
+                    <div class="buttons">
+                        <button class="func-button">Voltage</button>
+                        <button class="func-button">Power</button>
+                        <button class="func-button">Current</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="my-plug {{plug_test.state}}-plug">
+            <span><img src="../Images/socket.png" /> Plug {{plug_test.name}}</span>
+            <div class="plug-main">
+                <div class="buttons">
+                    <button type="button" ng-model="viewModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" class="circle-button more-button"><img src="../Images/more10.png" /></button>
+                    <button type="button" class="circle-button remove-button" ng-click="removePlug($index)"><img src="../Images/delete8.png" /></button>
+                    <button type="button" ng-click="test()" class="circle-button save-button"><img src="../Images/eco37.png" /></button>
+                    <button type="button" ng-model="on_off" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" onclick="sendOnOffCommand();" class="circle-button off-button"><img src="../Images/power102.png" /></button>
+                </div>
+                <div class="data">
+                    <div>
+                        <b>Uptime:</b> {{plug_test.ip}}
+                    </div>
+                    <div>
+                        <b>Location:</b> {{plug_test.location}}
+                    </div>
+                </div>
+            </div>
+            <div class="plug-other">
+                <div class="buttons">
+                    <button class="func-button" onclick="sendGetVoltageCommand(); setTimeout(checkForUpdate, 711);">Voltage</button>
+                    <button class="func-button" onclick="sendGetCurrentCommand(); setTimeout(checkForUpdate, 711);">Current</button>
+                    <button class="func-button" onclick="sendGetPowerCommand(); setTimeout(checkForUpdate, 711);">Power</button>
                 </div>
             </div>
         </div>
@@ -25,19 +63,20 @@
         <div class="col-lg-12">
             <h2>Add plug</h2>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <input id="name" type="text" placeholder="Name" ng-model="plug.name"/>
-            <input id="type" type="text" placeholder="Type" ng-model="plug.type"/>
+            <input id="ip" type="text" placeholder="IP" ng-model="plug.ip"/>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <input id="state" type="text" placeholder="State" ng-model="plug.state"/>
             <input id="location" type="text" placeholder="Location" ng-model="plug.location"/>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-2">
             <div class="col-lg-6">
                 <button id="plugInput" ng-click="addPlug()" class="circle-button add-button"><img src="../Images/plus79.png"/></button>
                 <button class="circle-button remove-button"><img src="../Images/delete8.png"/></button>
             </div>
         </div>
     </div>
+
 </div>

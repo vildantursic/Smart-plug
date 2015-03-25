@@ -1,8 +1,11 @@
 <div class="row" ng-controller="logCtrl">
-    <div></div>
-    <h2>LOG <small>#{{plug}}</small>
-    </h2>
-    <button class="btn btn-primary" onclick=" readFromLog() ">Read log</button>
+    <h2>LOG <small>#{{plug}}</small></h2>
+    <div>
+        <button type="button" class="btn btn-warning btn-sm" ng-click="disabled = !disabled">Enable/Disable</button>
 
-    <script type="text/javascript" src="../Scripts/log.js"></script>
+        <button class="btn btn-primary" ng-disabled="disabled" onclick=" readFromLog() ">Read log</button>
+
+        <script type="text/javascript" src="../Scripts/log.js"></script>
+    </div>
+
 </div>
