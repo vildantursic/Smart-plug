@@ -2,7 +2,7 @@
     <div class="container">
         <div class="chat-box">
             <h3 class="chat-head">Support</h3>
-            <div class="chat-text">
+            <div id="msg" class="chat-text">
                 <div id='messagesDiv'></div>
             </div>
             <div class="chat-input">
@@ -33,7 +33,7 @@
 
             function displayChatMessage(name, text) {
                 $('<div/>').text(text).prepend($('<b>').text(name + ': ')).appendTo($('#messagesDiv'));
-                $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+                $('#messagesDiv')[0].scrollBottom = $('#messagesDiv')[0].scrollHeight;
             };
         </script>
     </div>

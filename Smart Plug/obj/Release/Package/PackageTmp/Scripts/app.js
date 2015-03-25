@@ -1,4 +1,4 @@
-var app = angular.module("app", ['ui.router']);
+var app = angular.module("app", ['ui.router', 'ui.bootstrap']);
 
 app.config(function($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise("/");
@@ -21,69 +21,71 @@ app.config(function($urlRouterProvider, $stateProvider) {
         });
 });
 
-app.controller("homeCtrl", function ($scope, $http) {
+app.controller('navCtrl', function ($scope) {
+    
+});
+
+app.controller("homeCtrl", function ($scope, $modal, $log) {
 
     $scope.data = {
         plugs: [
-            {
-                name: "name",
-                type: "type",
-                state: "alert",
-                location: "kitchen"
-            }
+            
         ]
     }
 
-    var plugRef = new Firebase('https://smartplug.firebaseio.com');
+    
 
-    $scope.addPlug = function () {
-        $scope.data.plugs.push({
-
-            name: $scope.plug.name,
-            type: $scope.plug.type,
-            state: $scope.plug.state,
-            location: $scope.plug.location
-        });
+    $scope.plug_test = {
+        name: "name",
+        ip: "198.168.1.1",
+        state: "alert",
+        location: "kitchen"
     }
+     
+    var plugRef = new Firebase('https://smartplug.firebaseio.com');
 
     $('#plugInput').on("click", function (e) {
         var name = $scope.plug.name;
-        var type = $scope.plug.type;
+        var ip = $scope.plug.ip;
         var state = $scope.plug.state;
         var location = $scope.plug.location;
 
-        plugRef.push({ name: name, type: type, state: state, location: location });
+        plugRef.push({ name: name, ip: ip, state: state, location: location });
 
         $('#name').val('');
-        $('#type').val('');
+        $('#ip').val('');
         $('#state').val('');
         $('#location').val('');
     });
 
+    var plugs;
+
+    function importing() {
+        $scope.data.plugs.push(plugs);
+        
+    }
+
     plugRef.on('child_added', function (snapshot) {
-        $scope.plugs = snapshot.val();
-        console.log($scope.plugs);
+        plugs = snapshot.val();
+        
+        importing();
     });
 
     $scope.removePlug = function(index) {
         $scope.data.plugs.splice(index, 1);
     }
 
+    /* //////////////////// */
+    $scope.on_off = 1;
+
 });
 
 app.controller("logCtrl", function ($scope, $http, $stateParams) {
+
+    
+
     $scope.plug = $stateParams.id;
 
-    var req = {
-        method: 'GET',
-        url: '/Scripts/plugs.json'
-    }
-
-    $http.get(req).success(function (data) {
-        console.log(data);
-    }).error(function() {
-        console.log("404");
-    });
 });
 
 app.controller("plotCtrl", function ($scope) {
