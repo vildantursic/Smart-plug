@@ -1,5 +1,7 @@
 ﻿dozvoliAlert = true;
 
+ip='http://80.65.171.175';
+
 posrijednik = "";
 
 function ledstateGet() {
@@ -177,7 +179,6 @@ function checkForUpdate() {
 function sendOnOffCommand() {
     var req = false;
 
-
     if (window.XMLHttpRequest) {
         req = new XMLHttpRequest();
 
@@ -187,13 +188,14 @@ function sendOnOffCommand() {
 
     }
     if (req) {
-        if (document.getElementById("myonoffswitch").checked)
+        if (document.getElementById("my-plug").checked)
             //zamijenio si komande :@
-            req.open("GET", "/cgi-bin/sendCommandOn?id" + Math.random(), true);
+            req.open("GET", ip+"/cgi-bin/sendCommandOn?id" + Math.random(), true);
         else
-            req.open("GET", "/cgi-bin/sendCommandOff?id" + Math.random(), true);
+            req.open("GET", ip+"/cgi-bin/sendCommandOff?id" + Math.random(), true);
         req.send(null);
     }
+    console.log(ip);
 
 }
 
