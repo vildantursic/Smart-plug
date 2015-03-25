@@ -32,11 +32,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="my-plug {{plug_test.state}}-plug">
+        <div id="my-plug" class="my-plug {{plug_test.state}}-plug">
             <span><img src="../Images/socket.png" /> Plug {{plug_test.name}}</span>
             <div class="plug-main">
                 <div class="buttons">
-                    <button type="button" ng-model="viewModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" class="circle-button more-button"><img src="../Images/more10.png" /></button>
+                    <button type="button" ng-model="viewModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" class="circle-button more-button" onclick="getState()"><img src="../Images/more10.png" /></button>
                     <button type="button" class="circle-button remove-button" ng-click="removePlug($index)"><img src="../Images/delete8.png" /></button>
                     <button type="button" ng-click="test()" class="circle-button save-button"><img src="../Images/eco37.png" /></button>
                     <button type="button" ng-model="on_off" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" onclick="sendOnOffCommand();" class="circle-button off-button"><img src="../Images/power102.png" /></button>
@@ -52,9 +52,11 @@
             </div>
             <div class="plug-other">
                 <div class="buttons">
-                    <button class="func-button" onclick="sendGetVoltageCommand(); setTimeout(checkForUpdate, 711);">Voltage</button>
-                    <button class="func-button" onclick="sendGetCurrentCommand(); setTimeout(checkForUpdate, 711);">Current</button>
+                    <button class="func-button" onclick="refreshPVC()" >refresh</button>
+                    <button class="func-button" onclick="sendGetVoltageCommand(); setTimeout(checkForUpdate, 711);">Voltage</button> <div id="volt"></div>
+                    <button class="func-button" onclick="sendGetCurrentCommand(); setTimeout(checkForUpdate, 711);">Current</button> <div id="amper"></div>
                     <button class="func-button" onclick="sendGetPowerCommand(); setTimeout(checkForUpdate, 711);">Power</button>
+                    <div id="wat"></div>
                 </div>
             </div>
         </div>

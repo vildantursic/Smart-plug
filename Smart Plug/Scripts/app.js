@@ -37,7 +37,7 @@ app.controller("homeCtrl", function ($scope, $modal, $log) {
 
     $scope.plug_test = {
         name: "name",
-        ip: "198.168.1.1",
+        ip: "192.168.1.83",
         state: "alert",
         location: "kitchen"
     }
