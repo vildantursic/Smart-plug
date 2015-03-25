@@ -2,41 +2,72 @@
 
 ip='http://80.65.171.175';
 
-posrijednik = "";
 
-function ledstateGet() {
+posrijednik="";
+
+function ledstateGet()
+{
     var led = false;
-    function ledComplete() {
-        if (led.readyState == 4) {
-            if (led.status == 200) {
+    function ledComplete()
+    {
+        if(led.readyState == 4)
+        {
+            if(led.status == 200)
+            {
                 document.getElementById("ledstate").innerHTML = "<div>" + led.responseText + "</div>";
             }
         }
     }
-
-    if (window.XMLHttpRequest) {
+    if(window.XMLHttpRequest)
+    {
         led = new XMLHttpRequest();
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         led = new ActiveXObject("Microsoft.XMLHTTP");
     }
-
-    if (led) {
-        led.open("GET", ipAddr + "/cgi-bin/toggle_led?id" + Math.random(), true);
-        console.log("ok");
+    if(led)
+    {
+        led.open("GET", ip+"/ledstate?id=" + Math.random(), true);
         led.onreadystatechange = ledComplete;
         led.send(null);
-
     }
 }
+
+
+
+
+
+
+
+
+
 
 function closeControlPanel() {
     document.getElementById("controlPanel").style.visibility = "hidden";
-    document.getElementById('preko').src = "images/preko.gif";
+    document.getElementById('preko').src="preko.gif";
+    document.getElementById("comands").style.visibility = "hidden";
+    document.getElementById("showAdvanced").style.visibility = "hidden";
+
 }
 
-function appendNewText() {
-    if (document.getElementById("myonoffswitch").checked)
+function showAdvanced(){
+
+    document.getElementById("comands").style.visibility = "visible";
+    document.getElementById("showAdvanced").style.visibility = "hidden";
+}
+
+function hideAdvanced(){
+
+    document.getElementById("comands").style.visibility = "hidden";
+    document.getElementById("showAdvanced").style.visibility = "visible";
+}
+
+/*
+function appendNewText()
+
+{
+    if(document.getElementById("myonoffswitch").checked)
         var newText = document.createTextNode("Ugaseno");
 
     else var newText = document.createTextNode("Upaljeno");
@@ -45,130 +76,179 @@ function appendNewText() {
 
     para.appendChild(newText);
 
-}
+}*/
 
-function sendCheckStateCommand() {
+
+function sendCheckStateCommand()
+{
     var req = false;
+    
 
-    if (window.XMLHttpRequest) {
+    if(window.XMLHttpRequest)
+    {
         req = new XMLHttpRequest();
+
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         req = new ActiveXObject("Microsoft.XMLHTTP");
+
     }
-    if (req) {
-        req.open("GET", "/cgi-bin/sendCommandCheckState?id" + Math.random(), true);
+    if(req)
+    {
+        req.open("GET", ip+"/cgi-bin/sendCommandCheckState?id" + Math.random(), true);
         req.send(null);
     }
+
 }
 
-function sendGetVoltageCommand() {
+function sendGetVoltageCommand()
+{
     var req = false;
+    
 
-    if (window.XMLHttpRequest) {
+    if(window.XMLHttpRequest)
+    {
         req = new XMLHttpRequest();
+
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         req = new ActiveXObject("Microsoft.XMLHTTP");
+
     }
-    if (req) {
-        req.open("GET", "/cgi-bin/sendCommandGetVoltage?id" + Math.random(), true);
+    if(req)
+    {
+        req.open("GET", ip+"/cgi-bin/sendCommandGetVoltage?id" + Math.random(), true);
         req.send(null);
     }
+
 }
 
-function sendGetCurrentCommand() {
+function sendGetCurrentCommand()
+{
     var req = false;
+    
 
-    if (window.XMLHttpRequest) {
+    if(window.XMLHttpRequest)
+    {
         req = new XMLHttpRequest();
+
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         req = new ActiveXObject("Microsoft.XMLHTTP");
+
     }
-    if (req) {
-        req.open("GET", "/cgi-bin/sendCommandGetCurrent?id" + Math.random(), true);
+    if(req)
+    {
+        req.open("GET", ip+"/cgi-bin/sendCommandGetCurrent?id" + Math.random(), true);
         req.send(null);
     }
+
 }
 
-function sendGetPowerCommand() {
+function sendGetPowerCommand()
+{
     var req = false;
+    
 
-    if (window.XMLHttpRequest) {
+    if(window.XMLHttpRequest)
+    {
         req = new XMLHttpRequest();
+
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         req = new ActiveXObject("Microsoft.XMLHTTP");
+
     }
-    if (req) {
-        req.open("GET", "/cgi-bin/sendCommandGetPower?id" + Math.random(), true);
+    if(req)
+    {
+        req.open("GET", ip+"/cgi-bin/sendCommandGetPower?id" + Math.random(), true);
         req.send(null);
     }
+
 }
 
 
-function sendEnableCirrusCommand() {
+function sendEnableCirrusCommand()
+{
     var req = false;
+    
 
-    if (window.XMLHttpRequest) {
+    if(window.XMLHttpRequest)
+    {
         req = new XMLHttpRequest();
+
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         req = new ActiveXObject("Microsoft.XMLHTTP");
+
     }
-    if (req) {
-        req.open("GET", "/cgi-bin/sendCommandEnableCirrus?id" + Math.random(), true);
+    if(req)
+    {
+        req.open("GET", ip+"/cgi-bin/sendCommandEnableCirrus?id" + Math.random(), true);
         req.send(null);
     }
-}
-
-function dodo() {
-
-    document.getElementById("myonoffswitch").checked = true;
 
 }
 
-function dido() {
-    document.getElementById("myonoffswitch").checked = false;
+function dodo(){
+
+    document.getElementById("myonoffswitch").checked=true;
+
+}
+
+function dido(){
+
+    document.getElementById("myonoffswitch").checked=false;
+    
 }
 
 
-function checkForUpdate() {
-    var ipAddr = document.getElementById("ipAddr").value;
+function checkForUpdate()
+{
 
+    
     var req = false;
-
-    console.log(ipAddr);
-
-    function updateComplete() {
-        if (req.readyState == 4) {
-            if (req.status == 200) {
-                document.getElementById("example1").innerHTML = "<div>" + req.responseText + "</div>";
-                if (dozvoliAlert)
+    
+    function updateComplete(){
+        if(req.readyState == 4)
+        {
+            if(req.status == 200)
+            {
+                //document.getElementById("example1").innerHTML = "<div>" + req.responseText + "</div>";
+                if(dozvoliAlert)
                     alert(req.responseText);
-                posrijednik = req.responseText;
-                if (req.responseText == 'ONN') {
-                    document.getElementById('myonoffswitch').checked = true;
+                posrijednik=req.responseText;
+                if(req.responseText=='ONN'){
+                    document.getElementById('myonoffswitch').checked=true;
+                    console.log("tu je on");
                 }
-                if (req.responseText == "OFF") {
-                    document.getElementById('myonoffswitch').checked = false;
+                if(req.responseText=="OFF"){
+                    document.getElementById('myonoffswitch').checked=false;
+                    console.log("dol je off");
 
                 }
             }
         }
     }
 
-    if (window.XMLHttpRequest) {
+    if(window.XMLHttpRequest)
+    {
         req = new XMLHttpRequest();
 
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         req = new ActiveXObject("Microsoft.XMLHTTP");
 
     }
-    if (req) {
-        req.open("GET", ipAddr + "/cgi-bin/toggle_led?id" + Math.random(), true);
+    if(req)
+    {
+        req.open("GET", ip+"/cgi-bin/checkForUpdate?id" + Math.random(), true);
         req.onreadystatechange = updateComplete;
         req.send(null);
     }
@@ -176,124 +256,173 @@ function checkForUpdate() {
 }
 
 
-function sendOnOffCommand() {
-    var req = false;
 
-    if (window.XMLHttpRequest) {
+
+function sendOnOffCommand()
+{
+    var req = false;
+    
+
+    if(window.XMLHttpRequest)
+    {
         req = new XMLHttpRequest();
 
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         req = new ActiveXObject("Microsoft.XMLHTTP");
 
     }
-    if (req) {
-        if (document.getElementById("my-plug").checked)
+    if(req)
+    {
+
+        dozvoliAlert=false;
+        if(document.getElementById("my-plug").checked)
             //zamijenio si komande :@
-            req.open("GET", ip+"/cgi-bin/sendCommandOn?id" + Math.random(), true);
+        req.open("GET", ip+"/cgi-bin/sendCommandOn?id" + Math.random(), true);
         else
             req.open("GET", ip+"/cgi-bin/sendCommandOff?id" + Math.random(), true);
         req.send(null);
+        //ako bude problema ovo obrisi 
+        setTimeout(getState,1000);
+        setTimeout(function(){dozvoliAlert=true;},1500);
     }
-    console.log(ip);
 
 }
 
 
-var counter = 0;
+var counter=0;
 
 function openControlPanel(foo) {
 
-
-
+    dozvoliAlert=false;
+    document.getElementById("showAdvanced").style.visibility = "visible";
+    document.getElementById("comands").style.visibility = "hidden";
     document.getElementById("controlPanel").style.visibility = "visible";
-    if (foo == 0) {
-        document.getElementById('preko').src = "images/preko0.gif"
+    if (foo==0) {
+        document.getElementById('preko').src="preko0.gif"
     };
-    if (foo == 1) {
-        document.getElementById('preko').src = "images/preko1.gif"
+    if (foo==1) {
+        document.getElementById('preko').src="preko1.gif"
     };
-    if (foo == 2) {
-        document.getElementById('preko').src = "images/preko2.gif"
+    if (foo==2) {
+        document.getElementById('preko').src="preko2.gif"
     };
 
     sendCheckStateCommand();
-    setTimeout(checkForUpdate, 300);
-
+    setTimeout( checkForUpdate, 700 );
+    setTimeout(function(){dozvoliAlert=true;},1000);
     //checkForUpdate();
     //intervalVar=setInterval(function(){checkForUpdate()},500);
     //here receive answer and accordingly set state of ChechBox
 }
 
 
+function getState(){    
+    sendCheckStateCommand();
+    setTimeout( checkForUpdate, 700 );
+}
 
 
 
-function myTimer() {
+/*function myTimer() {
     var d = new Date();
     document.getElementById("demo").innerHTML = d.toLocaleTimeString();
     counter++;
 
-    if (counter == 7) {
+    if(counter==7){
         clearInterval(intervalVar);
-        counter = 0;
+        counter=0;
     }
-}
+}*/
 
 
-function refreshPVC() {
+function refreshPVC(){
 
     var d = new Date();
-    logLine = d.toUTCString();
-    dozvoliAlert = false;
+    logLine=d.toUTCString();
+    dozvoliAlert=false;
 
 
     sendGetCurrentCommand();
-    setTimeout(checkForUpdate, 300);
-    setTimeout(function () {
-        document.getElementById("amper").innerHTML = posrijednik;
-        logLine = logLine + ' ' + posrijednik;
-    }, 400);
+    setTimeout( checkForUpdate, 1000 );
+    setTimeout(function(){document.getElementById("amper").innerHTML = posrijednik;
+        logLine=logLine+ ' ' + posrijednik; console.log(posrijednik);},1100);
 
 
-    setTimeout(sendGetVoltageCommand, 400);
-    setTimeout(checkForUpdate, 700);
-    setTimeout(function () {
-        document.getElementById("volt").innerHTML = posrijednik;
-        logLine = logLine + ' ' + ' ' + posrijednik;
-    }, 800);
+    setTimeout(sendGetVoltageCommand,1200);
+    setTimeout( checkForUpdate, 2200 );
+    setTimeout(function(){document.getElementById("volt").innerHTML = posrijednik;
+        logLine=logLine+ ' ' + ' ' + posrijednik;console.log(posrijednik);},2300);
 
-    setTimeout(sendGetPowerCommand, 1100);
-    setTimeout(checkForUpdate, 1400);
-    setTimeout(function () { document.getElementById("wat").innerHTML = posrijednik; }, 1500);
-    setTimeout(function () {
-        dozvoliAlert = true;
-        logLine = logLine + ' ' + posrijednik;
-        logLine = logLine.replace(/ /g, "+");
-    }, 1500);
+    setTimeout(sendGetPowerCommand, 2400);
+    setTimeout( checkForUpdate, 3400 );
+    setTimeout(function(){document.getElementById("wat").innerHTML = posrijednik;},3500);
+    setTimeout(function(){dozvoliAlert=true;
+        logLine=logLine+ ' ' + posrijednik;
+        logLine = logLine.replace(/ /g,"+");console.log(posrijednik);},3600);
 
-    setTimeout(function () { document.getElementById("example1").innerHTML = logLine; }, 2000);
-    setTimeout(saveToLog, 2000);
+    //setTimeout(function(){document.getElementById("example1").innerHTML=logLine;},2000);
+    setTimeout(saveToLog, 3700);
 
     //alert("finished refreshPvc");
 }
 
-function saveToLog() {
+function saveToLog()
+{
     var req = false;
+    
 
-
-    if (window.XMLHttpRequest) {
+    if(window.XMLHttpRequest)
+    {
         req = new XMLHttpRequest();
 
     }
-    else if (window.ActiveXObject) {
+    else if(window.ActiveXObject)
+    {
         req = new ActiveXObject("Microsoft.XMLHTTP");
 
     }
-    if (req) {
-        req.open("GET", "/dataToLog=" + logLine, true);
+    if(req)
+    {
+        req.open("GET", ip+"/dataToLog=" + logLine, true);
         req.send(null);
     }
+
+}
+
+function funkc1(){
+document.getElementById("tabela1").style.zIndex="0";
+document.getElementById("tabela2").style.zIndex="1001";
+}
+
+
+function funkc2(){
+document.getElementById("tabela1").style.zIndex="1001";
+document.getElementById("tabela2").style.zIndex="0";
+
+}
+
+function myFunction(){
+
+    alert('Data has been saved to log.')
+
+}
+
+
+function logData(){
+
+    document.getElementById("logNotfication").style.visibility = "visible";
+    refreshIntervalId = setInterval(refreshPVC, 5000);
+    //alert('Current, voltage and power values are being recorded to log. \n\nThis option does not allow any other paralel acctivity. \nPress OK to stop logging data and continue.');
+
+}
+
+function stopLogData(){
+
+    clearInterval(refreshIntervalId);
+    document.getElementById("logNotfication").style.visibility = "hidden";
+    openControlPanel(0);
 
 }
 
