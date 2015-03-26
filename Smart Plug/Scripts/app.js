@@ -18,10 +18,19 @@ app.config(function($urlRouterProvider, $stateProvider) {
             url: "/plot/:id",
             templateUrl: "Views/plot.html",
             controller: "plotCtrl"
+        })
+        .state("machine", {
+            url: "/machine",
+            templateUrl: "Views/machine.html",
+            controller: "machineCtrl"
         });
 });
 
 app.controller('navCtrl', function ($scope) {
+    
+});
+
+app.controller('machineCtrl', function ($scope) {
     
 });
 
@@ -149,8 +158,8 @@ app.controller("plotCtrl", function ($scope) {
             fillStyle: "#000000",
             fontSize: 12
         },
-        maxValue: 10000,
-        minValue: -10000,
+        maxValue: 5,
+        minValue: -5,
         timestampFormatter: SmoothieChart.timeFormatter
     }),
 
@@ -166,3 +175,6 @@ app.controller("plotCtrl", function ($scope) {
     chart.streamTo(canvas, 2000);
 
 });
+
+
+

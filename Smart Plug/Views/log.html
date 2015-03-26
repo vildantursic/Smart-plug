@@ -1,11 +1,52 @@
 <div class="row" ng-controller="logCtrl">
-    <h2>LOG <small>#{{plug}}</small></h2>
-    <div>
-        <button type="button" class="btn btn-warning btn-sm" ng-click="disabled = !disabled">Enable/Disable</button>
+	<div class="col-lg-12">
+		<h2>LOG <small>{{plug}}</small></h2>
 
-        <button class="btn btn-primary" ng-disabled="disabled" onclick=" readFromLog() ">Read log</button>
+		<div>
+        	<button class="log-button" onclick=" readFromLog() ">Read log</button>
 
-        <script type="text/javascript" src="../Scripts/log.js"></script>
-    </div>
+	        <div class="loging" id="main"></div>
+	    </div>
+	</div>
+    
+    
 
+	<script type="text/javascript">
+		ip='http://80.65.171.175';
+		function readFromLog()
+		{
+			var req = false;
+			console.log("ok");
+			function readFromLogComplete(){
+				if(req.readyState == 4)
+				{
+					if(req.status == 200)
+					{
+						document.getElementById("main").innerHTML =req.responseText;
+					}
+				}
+			}
+
+			if(window.XMLHttpRequest)
+			{
+				req = new XMLHttpRequest();
+			}
+			else if(window.ActiveXObject)
+			{
+				req = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			if(req)
+			{
+				req.open("GET", ip+"/dataFromLog" + Math.random(), true);
+				req.onreadystatechange = readFromLogComplete;
+				req.send(null);
+			}
+
+		    alert('OK');
+		}
+
+
+
+	</script>
 </div>

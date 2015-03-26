@@ -1,18 +1,30 @@
 ﻿<div class="row">
-    <h1>HOME</h1>
-    <pre>{{on_off}}</pre>
+    <h2>HOME</h2>
     <div class="row">
         <div ng-repeat="plugy in data.plugs">
-            <div class="my-plug {{plugy.state}}-plug">
-                <span><img src="../Images/socket.png" /> Plug {{plugy.name}}</span>
+            <div id="my-plug" class="my-plug {{plugy.state}}-plug">
+            <span><img src="../Images/socket.png" /> Plug {{plugy.name}}</span>
+            <div class="state"></div>
+            <div class="row">
                 <div class="plug-main">
-                    <div class="buttons">
-                        <button type="button" class="circle-button more-button"><img src="../Images/more10.png" /></button>
-                        <button type="button" class="circle-button remove-button" ng-click="removePlug($index)"><img src="../Images/delete8.png" /></button>
-                        <button type="button" class="circle-button save-button"><img src="../Images/eco37.png" /></button>
-                        <button type="button" class="circle-button off-button"><img src="../Images/power102.png" /></button>
-                    </div>
+                    <button type="button" class="circle-button more-button" onclick="showMore()"><img src="../Images/more10.png" /></button>
+                    <button type="button" class="circle-button remove-button" ng-click="removePlug($index)"><img src="../Images/delete8.png" /></button>
+                    <button type="button" ng-click="test()" class="circle-button save-button"><img src="../Images/eco37.png" /></button>
+                    <button type="button" class="circle-button save-button">U</button>
+                    <button type="button" id="on_off" ng-model="on_off" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" onclick="sendOnOffCommand();" class="circle-button off-button"><img src="../Images/power102.png" /></button>
                     <div class="data">
+                        <div>
+                            <b>Uptime:</b> {{plugy.ip}}
+                        </div>
+                        <div>
+                            <b>Location:</b> {{plugy.location}}
+                        </div>
+                        <div>
+                            <b>Uptime:</b> {{plugy.ip}}
+                        </div>
+                        <div>
+                            <b>Location:</b> {{plugy.location}}
+                        </div>
                         <div>
                             <b>Uptime:</b> {{plugy.ip}}
                         </div>
@@ -21,42 +33,62 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="plug-other">
-                    <div class="buttons">
-                        <button class="func-button">Voltage</button>
-                        <button class="func-button">Power</button>
-                        <button class="func-button">Current</button>
-                    </div>
+                    <!-- <button class="func-button" onclick="refreshPVC()" >refresh</button> -->
+                    <button class="func-button" onclick="sendGetVoltageCommand(); setTimeout(checkForUpdate, 711);">Voltage</button> 
+                    V: <div id="volt"></div>
+                    <button class="func-button" onclick="sendGetCurrentCommand(); setTimeout(checkForUpdate, 711);">Current</button> 
+                    A: <div id="amper"></div>
+                    <button class="func-button" onclick="sendGetPowerCommand(); setTimeout(checkForUpdate, 711);">Power</button>
+                    W: <div id="wat"></div>
                 </div>
             </div>
         </div>
+        </div>
     </div>
+
     <div class="row">
         <div id="my-plug" class="my-plug {{plug_test.state}}-plug">
             <span><img src="../Images/socket.png" /> Plug {{plug_test.name}}</span>
-            <div class="plug-main">
-                <div class="buttons">
-                    <button type="button" ng-model="viewModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" class="circle-button more-button" onclick="getState()"><img src="../Images/more10.png" /></button>
+            <div class="state"><img src="../Images/caution8.png"></div>
+            <div class="row">
+                <div class="plug-main">
+                    <button type="button" class="circle-button more-button" onclick="showMore()"><img src="../Images/more10.png" /></button>
                     <button type="button" class="circle-button remove-button" ng-click="removePlug($index)"><img src="../Images/delete8.png" /></button>
                     <button type="button" ng-click="test()" class="circle-button save-button"><img src="../Images/eco37.png" /></button>
-                    <button type="button" ng-model="on_off" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" onclick="sendOnOffCommand();" class="circle-button off-button"><img src="../Images/power102.png" /></button>
-                </div>
-                <div class="data">
-                    <div>
-                        <b>Uptime:</b> {{plug_test.ip}}
+                    <button type="button" class="circle-button save-button"><img src="../Images/question30.png"></button>
+                    <button type="button" id="on_off" ng-model="on_off" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0" onclick="sendOnOffCommand();" class="circle-button off-button"><img src="../Images/power102.png" /></button>
+                    <div class="data">
+                        <div>
+                            <b>Uptime:</b> {{plug_test.ip}}
+                        </div>
+                        <div>
+                            <b>Location:</b> {{plug_test.location}}
+                        </div>
+                        <div>
+                            <b>Uptime:</b> {{plug_test.ip}}
+                        </div>
+                        <div>
+                            <b>Location:</b> {{plug_test.location}}
+                        </div>
+                        <div>
+                            <b>Uptime:</b> {{plug_test.ip}}
+                        </div>
+                        <div>
+                            <b>Location:</b> {{plug_test.location}}
+                        </div>
                     </div>
-                    <div>
-                        <b>Location:</b> {{plug_test.location}}
-                    </div>
                 </div>
-            </div>
-            <div class="plug-other">
-                <div class="buttons">
-                    <button class="func-button" onclick="refreshPVC()" >refresh</button>
-                    <button class="func-button" onclick="sendGetVoltageCommand(); setTimeout(checkForUpdate, 711);">Voltage</button> <div id="volt"></div>
-                    <button class="func-button" onclick="sendGetCurrentCommand(); setTimeout(checkForUpdate, 711);">Current</button> <div id="amper"></div>
+
+                <div class="plug-other">
+                    <!-- <button class="func-button" onclick="refreshPVC()" >refresh</button> -->
+                    <button class="func-button" onclick="sendGetVoltageCommand(); setTimeout(checkForUpdate, 711);" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Voltage</button> 
+                    V: <div id="volt"></div>
+                    <button class="func-button" onclick="sendGetCurrentCommand(); setTimeout(checkForUpdate, 711);">Current</button> 
+                    A: <div id="amper"></div>
                     <button class="func-button" onclick="sendGetPowerCommand(); setTimeout(checkForUpdate, 711);">Power</button>
-                    <div id="wat"></div>
+                    W: <div id="wat"></div>
                 </div>
             </div>
         </div>
@@ -80,5 +112,33 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+
+    i=0;
+
+    function showMore(state){
+        state=i%2;
+        console.log("usao sam");
+        if (state==1) {
+
+            $("#my-plug").removeClass("long");
+             $("#my-plug").addClass("short");
+             
+            console.log("1 sam");
+        }
+        if (state==0) {
+            $("#my-plug").removeClass("short");
+             $("#my-plug").addClass("long");
+            console.log("0 sam");
+
+        }
+        i++;
+        if(i==10)
+            i=0;
+        
+    }
+
+    </script>
 
 </div>

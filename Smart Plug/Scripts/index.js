@@ -2,6 +2,10 @@
 
 ip='http://80.65.171.175';
 
+status=-1;
+
+posible_alert=0;
+alert = 0;
 
 posrijednik="";
 
@@ -82,7 +86,7 @@ function appendNewText()
 function sendCheckStateCommand()
 {
     var req = false;
-    
+    status=0;
 
     if(window.XMLHttpRequest)
     {
@@ -105,7 +109,7 @@ function sendCheckStateCommand()
 function sendGetVoltageCommand()
 {
     var req = false;
-    
+    status=1;
 
     if(window.XMLHttpRequest)
     {
@@ -128,7 +132,7 @@ function sendGetVoltageCommand()
 function sendGetCurrentCommand()
 {
     var req = false;
-    
+    status=2;    
 
     if(window.XMLHttpRequest)
     {
@@ -151,7 +155,7 @@ function sendGetCurrentCommand()
 function sendGetPowerCommand()
 {
     var req = false;
-    
+    status=3;
 
     if(window.XMLHttpRequest)
     {
@@ -223,15 +227,33 @@ function checkForUpdate()
                 if(dozvoliAlert)
                     alert(req.responseText);
                 posrijednik=req.responseText;
-                if(req.responseText=='ONN'){
-                    document.getElementById('myonoffswitch').checked=true;
-                    console.log("tu je on");
-                }
-                if(req.responseText=="OFF"){
-                    document.getElementById('myonoffswitch').checked=false;
-                    console.log("dol je off");
+                if(status==0){
+                    if(req.responseText=='ONN'){
+                        $("#on_off").removeClass("off");
+                        $("#on_off").addClass("on");
+                        posible_alert=1;
+                    }
+                    if(req.responseText=="OFF"){
+                        $("#on_off").removeClass("on");
+                        $("#on_off").addClass("off");
 
                 }
+
+                }
+
+                if(status==1)
+                    document.getElementById("volt").innerHTML = posrijednik;
+                if(status==2){
+                    document.getElementById("amper").innerHTML = posrijednik;
+                    if (posible_alert==1 && posrijednik==0) 
+                        alert=1;
+                    }
+                   
+                if(status==3)
+                    document.getElementById("wat").innerHTML = posrijednik;
+
+                status=-1;
+
             }
         }
     }
@@ -254,8 +276,6 @@ function checkForUpdate()
     }
 
 }
-
-
 
 
 function sendOnOffCommand()
@@ -323,6 +343,19 @@ function getState(){
     setTimeout( checkForUpdate, 700 );
 }
 
+function getStatus(){  
+
+    posible_alert=0;  
+    alert=0;
+    sendCheckStateCommand();
+    setTimeout(checkForUpdate, 700 );
+    setTimeout(sendGetCurrentCommand, 800); 
+    setTimeout(checkForUpdate, 1500); 
+    if(alert==1)
+        //setting alert func
+    posible_alert=0;
+    alert=0;
+}
 
 
 /*function myTimer() {
