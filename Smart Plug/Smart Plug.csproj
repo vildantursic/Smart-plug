@@ -115,7 +115,6 @@
     <Content Include="Images\shutdown1.png" />
     <Content Include="Images\socket.png" />
     <Content Include="Images\user168.png" />
-    <Content Include="index-2.html" />
     <Content Include="index.html" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular.js" />
@@ -132,13 +131,13 @@
     <Content Include="Scripts\smoothie.js" />
     <Content Include="Scripts\ui-bootstrap-0.12.1.min.js" />
     <Content Include="Styles\bootstrap.css" />
-    <Content Include="Styles\main-2.css" />
     <Content Include="Styles\main.css" />
     <Content Include="Views\footer.html" />
     <Content Include="Views\header.html" />
     <Content Include="Views\home.html" />
     <Content Include="Views\log.html" />
-    <Content Include="Views\myModalContent.html" />
+    <Content Include="Views\login.html" />
+    <Content Include="Views\machine.html" />
     <Content Include="Views\plot.html" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -149,7 +148,6 @@
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config" />
     <None Include="Properties\PublishProfiles\smartplug.pubxml" />
-    <None Include="Scripts\plugs.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

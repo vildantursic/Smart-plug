@@ -242,15 +242,15 @@ function checkForUpdate()
                 }
 
                 if(status==1)
-                    document.getElementById("volt").innerHTML = posrijednik;
+                    document.getElementById("volt").innerHTML = posrijednik + " V";
                 if(status==2){
-                    document.getElementById("amper").innerHTML = posrijednik;
+                    document.getElementById("amper").innerHTML = posrijednik + " C";
                     if (posible_alert==1 && posrijednik==0) 
                         alert=1;
                     }
                    
                 if(status==3)
-                    document.getElementById("wat").innerHTML = posrijednik;
+                    document.getElementById("wat").innerHTML = posrijednik + " W";
 
                 status=-1;
 
@@ -350,9 +350,14 @@ function getStatus(){
     sendCheckStateCommand();
     setTimeout(checkForUpdate, 700 );
     setTimeout(sendGetCurrentCommand, 800); 
-    setTimeout(checkForUpdate, 1500); 
-    if(alert==1)
+    setTimeout(checkForUpdate, 1500);
+    if (alert == 1) {
         //setting alert func
+        $("#state").innerHTML = '<img src="../Images/caution8.png">';
+    }
+    else {
+        $("#state").innerHTML = '';
+    }
     posible_alert=0;
     alert=0;
 }

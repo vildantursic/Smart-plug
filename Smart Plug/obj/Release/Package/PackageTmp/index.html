@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
 <head>
     <meta http-equiv="content-type" content="text/html;charset=ISO-8869-1">
-    <title>Smart Home Management  System</title>
+    <title>Smart Plug</title>
 
+    <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
     <link href="Styles/bootstrap.css" rel="stylesheet" />
     <link href="Styles/main.css" rel="stylesheet" />
     <script type="text/javascript" src="Scripts/canvasjs.min.js"></script>
     <script type="text/javascript" src="Scripts/smoothie.js"></script>
-    <!--<script src="Scripts/plot-connection.js"></script>-->
+    
 
 </head>
 <body>
@@ -20,7 +21,7 @@
             <div ui-view></div>
         </div>
     </div>
-
+    <div id="example1"></div>
     <div ng-include="'Views/footer.html'"></div>
 
     <script type="text/javascript" src="Scripts/jquery.js"></script>
@@ -29,7 +30,9 @@
     <script type="text/javascript" src="Scripts/angular-ui-router.js"></script>
     <script src="Scripts/ui-bootstrap-0.12.1.min.js"></script>
     <script type="text/javascript" src="Scripts/app.js"></script>
+    <script type="text/javascript" src="Scripts/index.js"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
 
 
 

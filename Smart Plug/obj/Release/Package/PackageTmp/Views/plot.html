@@ -1,23 +1,281 @@
-<div class="row" ng-controller="plotCtrl">
-    
-    <div class="col-lg-12">
-        <div id="chartContainer" class="plot"></div>
-    </div>
+<script>
 
-    <div class="col-lg-12 space">
-        <select id="selectBox">
-            <option value="current">Current</option>
-            <option value="voltage">Voltage</option>
-            <option value="power">Power</option>
-        </select>
-    </div>
+ip='http://80.65.171.175';
 
-    <div class="col-lg-12 space">
-        <canvas id="smoothie-chart" width="1100" height="270"></canvas>
-    </div>
+    function checkForUpdate()
+    {
 
-    <pre>{{ chart.millisPerPixel }}</pre>
-    <input class="form-control" ng-model="chart.millisPerPixel" />
 
-    <script src="../Scripts/plot.js"></script>
+        var req = false;
+
+        function updateComplete(){
+            if(req.readyState == 4)
+            {
+                if(req.status == 200)
+                {
+
+                vrijednost = parseFloat(req.responseText);
+
+                }
+            }
+        }
+
+
+        if(window.XMLHttpRequest)
+        {
+            req = new XMLHttpRequest();
+
+        }
+        else if(window.ActiveXObject)
+        {
+            req = new ActiveXObject("Microsoft.XMLHTTP");
+
+        }
+        if(req)
+        {
+            req.open("GET", ip+"/cgi-bin/checkForUpdate?id" + Math.random(), true);
+            req.onreadystatechange = updateComplete;
+            req.send(null);
+        }
+
+    }
+
+
+    function sendGetVoltageCommand()
+    {
+        var req = false;
+console.log("voltage");
+
+        if(window.XMLHttpRequest)
+        {
+            req = new XMLHttpRequest();
+
+        }
+        else if(window.ActiveXObject)
+        {
+            req = new ActiveXObject("Microsoft.XMLHTTP");
+
+        }
+        if(req)
+        {
+            req.open("GET", ip+"/cgi-bin/sendCommandGetVoltage?id" + Math.random(), true);
+            req.send(null);
+        }
+
+    }
+
+    function sendGetCurrentCommand()
+    {
+        var req = false;
+        console.log("current");
+
+        if(window.XMLHttpRequest)
+        {
+            req = new XMLHttpRequest();
+
+        }
+        else if(window.ActiveXObject)
+        {
+            req = new ActiveXObject("Microsoft.XMLHTTP");
+
+        }
+        if(req)
+        {
+            req.open("GET", ip+"/cgi-bin/sendCommandGetCurrent?id" + Math.random(), true);
+            req.send(null);
+        }
+
+    }
+
+    function sendGetPowerCommand()
+    {
+        var req = false;
+console.log("power");
+
+        if(window.XMLHttpRequest)
+        {
+            req = new XMLHttpRequest();
+
+        }
+        else if(window.ActiveXObject)
+        {
+            req = new ActiveXObject("Microsoft.XMLHTTP");
+
+        }
+        if(req)
+        {
+            req.open("GET", ip+"/cgi-bin/sendCommandGetPower?id" + Math.random(), true);
+            req.send(null);
+        }
+
+    }
+
+    function myTimer1() {
+        console.log("timer"+selectValue);
+        if(selectValue==0)
+        sendGetCurrentCommand();
+        else if(selectValue==1)
+        sendGetVoltageCommand();
+        else if(selectValue==2)
+        sendGetPowerCommand();
+        setTimeout( checkForUpdate, 700 );
+    }
+
+    var myVar=setInterval(function(){myTimer1()},900);
+
+
+    function myFunction() {
+        alert(selectBox.value);
+    }
+
+
+    selectValue=0;
+
+
+    function currentClicked(){
+
+               selectValue=0;
+
+          }
+
+     function voltageClicked(){
+
+               selectValue=1;
+
+          }
+
+     function powerClicked(){
+
+               selectValue=2;
+               console.log("select val" + selectValue);
+          }
+
+     var stack=true;
+     // opens the modal
+    function openModal() {
+        pleseWait.classList.add("active");
+        stack=false;
+    }
+
+    function closeModal() {
+        pleseWait.classList.remove("active");
+        stack=true;
+    }
+
+
+
+
+    function openTemporaryModal() {
+
+        openModal();
+        setTimeout(closeModal, 15000);
+      
+
+    }
+
+
+
+    </script>
+
+</head>
+<body>
+
+<div id="pleseWait" class="modal demo-1">
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+               <section class="main">
+                    <!-- the component -->
+                    <div class="bar">
+                         <i class="sphere"></i>
+                    </div>
+               </section>
 </div>
+
+    
+
+    <div class="row ">
+        <div class="col-lg-12">
+            <h2>PLOT</h2>
+
+            <div class="btn-group">
+            <a class="plot-button dropdown-toggle" data-toggle="dropdown" >Select Source<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a onclick="currentClicked();">Current</a></li>
+              <li><a onclick="voltageClicked();">Voltage</a></li>
+              <li><a onclick="powerClicked() ">Power</a></li>
+            </ul>
+          </div>
+
+        </div> 
+        <div class="col-lg-12">
+            <canvas class="smoothie" id="mycanvas" width="1000"  height="400"></canvas>
+        </div>
+    </div>
+    
+
+
+    <script type="text/javascript">
+
+$(".dropdown-menu li a").click(function(){
+  var selText = $(this).text();
+  $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+});
+
+    vrijednost=0.0;
+      // Random data
+      var line1 = new TimeSeries();
+      var line2 = new TimeSeries();
+      var line3 = new TimeSeries();
+     setInterval(function() {
+
+        if(stack){
+        if(selectValue==0){
+        
+        line1.append(new Date().getTime(), vrijednost);         
+        line2.append(new Date().getTime(), 0);
+        line3.append(new Date().getTime(), 0);
+         }
+     
+        
+        else if(selectValue==1)
+        {
+        line2.append(new Date().getTime(), vrijednost);         
+        line1.append(new Date().getTime(), 0);
+        line3.append(new Date().getTime(), 0);}
+        else if(selectValue==2)
+        {
+        line3.append(new Date().getTime(), vrijednost);         
+        line2.append(new Date().getTime(), 0);
+        line1.append(new Date().getTime(), 0);}
+        setTimeout( checkForUpdate, 700 );  
+        }
+
+
+
+
+   }, 1400);
+
+     var smoothie = new SmoothieChart({ grid: { fillStyle: "#ffffff",
+            strokeStyle: "rgba(119,119,119,0.66)",
+            sharpLines: true,
+            verticalSections: 10, 
+            lineWidth: 1, 
+            millisPerLine: 250, 
+            verticalSections: 6 
+        }, 
+        labels: {
+            fillStyle: "#000000",
+            fontSize: 12
+        },
+        minValue:0});
+     
+     smoothie.addTimeSeries(line3, { strokeStyle: 'rgb(0, 0, 255)', lineWidth: 5 });
+     smoothie.addTimeSeries(line2, { strokeStyle: 'rgb(255, 0, 0)', lineWidth: 5 });
+     smoothie.addTimeSeries(line1, { strokeStyle: 'rgb(0, 255, 0)', fillStyle: 'rgba(0, 255, 0, 0)', lineWidth: 5 });
+
+     smoothie.streamTo(document.getElementById("mycanvas"), 900);
+     </script>

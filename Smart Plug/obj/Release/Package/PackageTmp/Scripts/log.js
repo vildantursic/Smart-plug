@@ -1,7 +1,8 @@
+ip='http://80.65.171.175';
 function readFromLog()
 {
 	var req = false;
-	
+	console.log("ok");
 	function readFromLogComplete(){
 		if(req.readyState == 4)
 		{
@@ -23,7 +24,7 @@ function readFromLog()
 
 	if(req)
 	{
-		req.open("GET", "/dataFromLog" + Math.random(), true);
+		req.open("GET", ip+"/dataFromLog" + Math.random(), true);
 		req.onreadystatechange = readFromLogComplete;
 		req.send(null);
 	}

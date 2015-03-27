@@ -14,8 +14,39 @@ ul {
     display: inline;
 }
 
+.logo {
+    font-family: 'Audiowide';
+    font-size: 45px;
+    cursor: default;
+    -webkit-transition: all 0.8s ease 0s; /* Safari */
+    -moz-transition: all 0.8s ease 0s;
+    -ms-transition: all 0.8s ease 0s;
+    -o-transition: all 0.8s ease 0s;
+    transition: all 0.8s ease 0s;
+}
+.logo:hover {
+    color: wheat;
+    text-shadow: 10px 10px 10px #000000;
+}
+
 .space {
     margin: 10px 0 10px 0;
+}
+
+a:link{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+a:active{
+    text-decoration: none;
+}
+a:visited{
+    text-decoration: none;
+}
+a:focus{
+    text-decoration: none;
 }
 
 /* HEADER */
@@ -141,19 +172,25 @@ footer {
     background: #a1a1a1;
 }
 
+.plot-view {
+    margin-top: 30px;
+}
+
 .my-plug {
     display: block;
     float: left;
-    width: 170px;
-    height: 270px;
+    width: 380px;
+    height: 400px;
     padding: 5px;
 	text-align: center;
 	vertical-align: middle;
-	font-size: 20px;
+	font-size: 25px;
     border: none;
     color: black;
     margin: 8px;
     overflow: hidden;
+    background: #d8d8d8;
+    border: solid 1px #1e90ff;
     -webkit-transition: all 0.6s ease 0s; /* Safari */
     -moz-transition: all 0.6s ease 0s;
     -ms-transition: all 0.6s ease 0s;
@@ -163,37 +200,74 @@ footer {
 @media (max-width: 800px) {
     .my-plug {
         width: 100%;
-        height: 210px;
+        height: 400px;
     }
 }
+.my-plug .state {
+    width: 110%;
+    height: 50px;
+    margin: 10px -5px 20px -5px;
+}
+.my-plug .state img {
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+}
 .my-plug .plug-main {
-    width: 100%;
+    float: left;
+    height: 400px;
+    margin-left: 50px;
+    text-align: center;
 }
 .my-plug .plug-other {
-    width: 100%;
+    float: left;
+    margin-top: 0;
+    margin-left: 70px;
 }
-.my-plug:hover {
-    height: 500px;
+.my-plug .plug-other .result {
+    float: left;
+    margin-top: -100px;
+}
+.my-plug .plug-other .result div {
+    margin-bottom: 30px;
+}
+
+
+@media (min-width: 800px){
+    .long {
+        width: 800px;
+    }
+    .short {
+        width: 380px;
+    }
+}
+
+@media (max-width: 800px){
+    .long {
+        height: 800px;
+    }
+    .short {
+        height: 400px;
+    }
+    .my-plug .plug-other {
+        float: left;
+        margin-top: 0;
+        margin-top: -50px;
+        margin-left: 120px;
+    }
 }
 .my-plug img {
     width: 20px;
     height: 20px;
 }
-.my-plug .buttons {
-    margin-top: 30px;
-}
 .my-plug .data {
-    font-size: 17px;
+    font-size: 20px;
     margin-top: 30px;
 }
-.my-plug .show-data {
-    height: 300px;
+.my-plug .data div{
+    margin-bottom: 10px;
 }
-.my-plug:hover {
-    /*-ms-transform: translate(80%,0);
-   	-webkit-transform: translate(80%,0);
-    transform: translate(80%,0);*/
-}
+
 .alert-plug {
     background: #fe1b1b;
 }
@@ -209,8 +283,8 @@ footer {
 
 .circle-button {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     line-height: 1.5;
     padding: 5px 10px 5px 10px;
     margin: 5px;
@@ -235,6 +309,13 @@ footer {
     height: 20px;
     text-align: center;
     vertical-align: middle;
+}
+
+.on{
+    background: green;
+}
+.off{
+    background: red;
 }
 
 .add-button {
@@ -283,21 +364,22 @@ footer {
 }
 
 .func-button {
+    float: left;
     display: inline-block;
-    width: 100px;
+    width: 60%;
     height: 50px;
     line-height: 1.5;
     padding: 5px 10px 5px 10px;
     margin: 5px;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	font-size: 20px;
-	font-weight: lighter;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: lighter;
     border: none;
     color: black;
     outline-style: none;
-    background: #cbcbcb;
+    background: #86a2ff;
     -webkit-transition: all 0.5s ease 0.1s;
     -moz-transition: all 0.5s ease 0.1s;
     -ms-transition: all 0.5s ease 0.1s;
@@ -305,8 +387,57 @@ footer {
     transition: all 0.5s ease 0.1s;
 }
 .func-button:hover {
-    border: solid 5px #1976d2;
-    font-size: 18px;
+    background: #5d83ff;
+}
+
+.log-button {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    line-height: 1.5;
+    padding: 5px 10px 5px 10px;
+    margin: 5px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: lighter;
+    border: none;
+    color: black;
+    outline-style: none;
+    background: #B2E775;
+    -webkit-transition: all 0.5s ease 0.1s;
+    -moz-transition: all 0.5s ease 0.1s;
+    -ms-transition: all 0.5s ease 0.1s;
+    -o-transition: all 0.5s ease 0.1s;
+    transition: all 0.5s ease 0.1s;
+}
+
+.plot-button {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    line-height: 1.5;
+    padding: 5px 10px 5px 10px;
+    margin: 5px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: lighter;
+    border: none;
+    color: black;
+    outline-style: none;
+    background: #B2E775;
+    text-decoration: none;
+    -webkit-transition: all 0.5s ease 0.1s;
+    -moz-transition: all 0.5s ease 0.1s;
+    -ms-transition: all 0.5s ease 0.1s;
+    -o-transition: all 0.5s ease 0.1s;
+    transition: all 0.5s ease 0.1s;
+}
+plot-button:hover{
+    text-decoration: none;
 }
 
 .switch {
@@ -337,6 +468,15 @@ footer {
     border-bottom: solid 4px #1976D2;
 }
 
+.smoothie {
+    margin-top: 20px;
+}
+
+.loging{
+    border: solid 1px #1976D2;
+    padding: 10px;
+    height: 100%;
+}
 /* INPUTS */
 input {
     width: 100%;
@@ -344,3 +484,5 @@ input {
     padding: 5px;
     height: 40px;
 }
+
+/* TESTING PART */
