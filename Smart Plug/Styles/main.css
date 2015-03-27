@@ -14,21 +14,6 @@ ul {
     display: inline;
 }
 
-.logo {
-    font-family: 'Audiowide';
-    font-size: 45px;
-    cursor: default;
-    -webkit-transition: all 0.8s ease 0s; /* Safari */
-    -moz-transition: all 0.8s ease 0s;
-    -ms-transition: all 0.8s ease 0s;
-    -o-transition: all 0.8s ease 0s;
-    transition: all 0.8s ease 0s;
-}
-.logo:hover {
-    color: wheat;
-    text-shadow: 10px 10px 10px #000000;
-}
-
 .space {
     margin: 10px 0 10px 0;
 }
@@ -47,6 +32,22 @@ a:visited{
 }
 a:focus{
     text-decoration: none;
+}
+
+.logo {
+    font-family: 'Audiowide';
+    font-size: 45px;
+    cursor: default;
+    -webkit-transition: all 0.8s ease 0s; /* Safari */
+    -moz-transition: all 0.8s ease 0s;
+    -ms-transition: all 0.8s ease 0s;
+    -o-transition: all 0.8s ease 0s;
+    transition: all 0.8s ease 0s;
+    color: #333;
+}
+.logo:hover {
+    color: wheat;
+    text-shadow: 10px 10px 10px #000000;
 }
 
 /* HEADER */

@@ -112,6 +112,8 @@
     <Content Include="Images\plus79.png" />
     <Content Include="Images\power102.png" />
     <Content Include="Images\power25.png" />
+    <Content Include="Images\question30.png" />
+    <Content Include="Images\robot30.png" />
     <Content Include="Images\shutdown1.png" />
     <Content Include="Images\socket.png" />
     <Content Include="Images\user168.png" />
@@ -147,7 +149,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config" />
+    <None Include="Properties\PublishProfiles\smartplug %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\smartplug.pubxml" />
+    <Content Include="Styles\bootstrap.css.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
